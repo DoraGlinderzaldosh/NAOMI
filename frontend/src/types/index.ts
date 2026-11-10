@@ -17,6 +17,8 @@ export interface ForecastData {
   y_pred: number[];
   lower_ci: number[];
   upper_ci: number[];
+  lower_95?: number[];
+  upper_95?: number[];
   mae?: number;
   rmse?: number;
   mape?: number;
@@ -70,4 +72,62 @@ export interface SimulationSliders {
 export interface HistoricalPoint {
   date: string;
   actual: number;
+}
+
+export interface PersonaDetail {
+  persona_id: string;
+  name: string;
+  weight_pct: number;
+  baseline_prob: number;
+  candidate_prob: number;
+  delta_prob_pct: number;
+  reserve_price: number;
+  elasticity: number;
+}
+
+export interface VirtualPopulationResponse {
+  sku_id: string;
+  base_price: number;
+  candidate_price: number;
+  total_shopper_traffic: number;
+  aggregate_conversion_rate: number;
+  baseline_conversion_rate: number;
+  expected_demand_units: number;
+  demand_p05: number;
+  demand_p95: number;
+  demand_std_dev: number;
+  demand_delta_pct: number;
+  personas: PersonaDetail[];
+}
+
+export interface FrontierPoint {
+  lambda: number;
+  optimal_price: number;
+  expected_profit: number;
+  cvar_downside_profit: number;
+  tail_risk_exposure: number;
+  forecasted_demand: number;
+}
+
+export interface CVaROptimizeResponse {
+  sku_id: string;
+  base_price: number;
+  optimal_price: number;
+  risk_aversion_lambda: number;
+  expected_profit: number;
+  cvar_downside_profit: number;
+  tail_risk_gap: number;
+  forecasted_demand: number;
+  base_expected_profit: number;
+  profit_uplift_pct: number;
+  is_constrained: boolean;
+  efficient_frontier: FrontierPoint[];
+}
+
+export interface NarrativeResponse {
+  sku_id: string;
+  narrative: string;
+  source: string;
+  disclaimer: string;
+  validated: boolean;
 }
