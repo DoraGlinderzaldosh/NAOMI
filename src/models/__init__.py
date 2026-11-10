@@ -5,10 +5,11 @@ from src.models.baseline import (
     NaiveBenchmarkModel,
     SeasonalNaiveBenchmarkModel,
     MovingAverageBenchmarkModel,
-    RidgeBenchmarkModel
+    RidgeBenchmarkModel,
 )
 from src.models.lstm import DemandLSTM, PyTorchLSTMModel
 from src.models.metrics import evaluate_forecasts, generate_ablation_dataframe
+from src.models.conformal_gate import ConformalGatedForecaster, ConformalIntervals
 
 __all__ = [
     "BaseForecastModel",
@@ -19,5 +20,7 @@ __all__ = [
     "DemandLSTM",
     "PyTorchLSTMModel",
     "evaluate_forecasts",
-    "generate_ablation_dataframe"
+    "generate_ablation_dataframe",
+    "ConformalGatedForecaster",
+    "ConformalIntervals",
 ]
