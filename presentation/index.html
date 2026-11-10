@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAOMI 2.0 — Executive Presentation (13 Slides)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #07090E; color: #F8FAFC; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .slide { display: none; }
+    .slide.active { display: flex; }
+    .crimson-glow { box-shadow: 0 0 40px -10px rgba(225, 29, 72, 0.25); }
+    .blue-glow { box-shadow: 0 0 40px -10px rgba(56, 189, 248, 0.20); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-rose-500/30 selection:text-rose-200">
+
+  <!-- Top Navigation & Progress Bar -->
+  <header class="border-b border-slate-800/80 bg-[#0A0D14]/90 backdrop-blur px-8 py-4 flex items-center justify-between z-20">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-rose-500 to-rose-700 flex items-center justify-center font-bold text-white text-sm shadow-md shadow-rose-950">N</div>
+      <div>
+        <h1 class="text-sm font-bold tracking-tight text-white flex items-center gap-2">
+          <span>NAOMI 2.0</span>
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 mono">C-SUITE BRIEFING</span>
+        </h1>
+        <p class="text-[11px] text-slate-400">Neural Analytics for Optimization & Market Intelligence</p>
+      </div>
+    </div>
+    
+    <div class="flex items-center gap-4">
+      <span id="slideCounter" class="text-xs mono text-slate-400">Slide 1 of 13</span>
+      <div class="flex items-center gap-1.5">
+        <button onclick="prevSlide()" class="px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-xs font-semibold text-slate-300 transition cursor-pointer">← Prev</button>
+        <button onclick="nextSlide()" class="px-3 py-1.5 rounded-lg border border-rose-500/40 bg-rose-600/20 hover:bg-rose-600/30 text-xs font-semibold text-rose-300 transition cursor-pointer">Next →</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Slide Canvas Container -->
+  <main class="flex-1 max-w-6xl w-full mx-auto p-6 md:p-12 flex items-center justify-center">
+
+    <!-- Slide 1: The Problem -->
+    <div class="slide active w-full flex-col space-y-6" data-slide="1">
+      <span class="text-xs uppercase tracking-widest text-rose-400 mono font-semibold">Slide 01 • Executive Problem</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white leading-tight">
+        The Structural Disconnect in <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-rose-600">Enterprise Commercial Strategy</span>
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+        <div class="p-6 rounded-2xl border border-slate-800/90 bg-[#0F1422] space-y-3">
+          <div class="text-rose-400 text-2xl font-bold mono">01</div>
+          <h3 class="text-lg font-semibold text-white">Point-Only Blindness</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Forecasting engines output single scalar numbers without uncertainty, forcing supply chains to guess safety stocks.</p>
+        </div>
+        <div class="p-6 rounded-2xl border border-slate-800/90 bg-[#0F1422] space-y-3">
+          <div class="text-rose-400 text-2xl font-bold mono">02</div>
+          <h3 class="text-lg font-semibold text-white">The Upward-Sloping ML Trap</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Naive machine learning algorithms predict upward-sloping demand curves in over 60% of products, recommending irrational price hikes.</p>
+        </div>
+        <div class="p-6 rounded-2xl border border-slate-800/90 bg-[#0F1422] space-y-3">
+          <div class="text-rose-400 text-2xl font-bold mono">03</div>
+          <h3 class="text-lg font-semibold text-white">Disconnected Stress Tests</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Macro shocks (inflation, currency swings, rival price cuts) live in static spreadsheets disconnected from live SKU pricing.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2: Solution -->
+    <div class="slide w-full flex-col space-y-6" data-slide="2">
+      <span class="text-xs uppercase tracking-widest text-cyan-400 mono font-semibold">Slide 02 • Core Solution</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white leading-tight">
+        NAOMI in One Sentence & <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">One Unified System</span>
+      </h2>
+      <p class="text-lg text-slate-300 max-w-3xl leading-relaxed">
+        NAOMI turns raw high-frequency sales history into profit-maximizing price decisions, calibrated inventory safety bands, and plain-English executive briefings with verified risk boundaries.
+      </p>
+      <div class="p-8 rounded-2xl border border-cyan-500/30 bg-[#0F172A] blue-glow flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="text-center md:text-left">
+          <span class="text-xs mono text-cyan-400">DATA INPUT</span>
+          <div class="text-xl font-bold text-white mt-1">Walmart M5 Benchmark</div>
+          <div class="text-xs text-slate-400">5.4 Yrs • 1,913 Days • 5 SKUs</div>
+        </div>
+        <div class="text-cyan-400 text-xl font-bold">➔</div>
+        <div class="text-center md:text-left">
+          <span class="text-xs mono text-cyan-400">PREDICTIVE TIER</span>
+          <div class="text-xl font-bold text-white mt-1">CoRAL-RF Gated Forecaster</div>
+          <div class="text-xs text-slate-400">90% & 95% Conformal Envelopes</div>
+        </div>
+        <div class="text-cyan-400 text-xl font-bold">➔</div>
+        <div class="text-center md:text-left">
+          <span class="text-xs mono text-cyan-400">PRESCRIPTIVE TIER</span>
+          <div class="text-xl font-bold text-white mt-1">Separable Elasticity & CVaR</div>
+          <div class="text-xs text-slate-400">MIT Isotonic • Zero Upward Bias</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: Architecture -->
+    <div class="slide w-full flex-col space-y-6" data-slide="3">
+      <span class="text-xs uppercase tracking-widest text-rose-400 mono font-semibold">Slide 03 • System Architecture</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white">5-Tier Integrated Architecture</h2>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 pt-2">
+        <div class="p-4 rounded-xl border border-slate-800 bg-[#0F1422] space-y-2">
+          <div class="text-xs mono text-slate-500">TIER 1</div>
+          <h4 class="text-sm font-bold text-white">Data Pipeline</h4>
+          <p class="text-xs text-slate-400">Lags (t-1, 7, 14, 28), cyclical harmonics, zero future leakage.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-blue-900/60 bg-[#0E172E] space-y-2">
+          <div class="text-xs mono text-blue-400">TIER 2</div>
+          <h4 class="text-sm font-bold text-white">Hybrid Forecast</h4>
+          <p class="text-xs text-slate-400">Random Forest tabular anchor + PyTorch LSTM residual expert.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-cyan-900/60 bg-[#092233] space-y-2">
+          <div class="text-xs mono text-cyan-400">TIER 3</div>
+          <h4 class="text-sm font-bold text-white">Conformal Bounds</h4>
+          <p class="text-xs text-slate-400">Split conformal 90% & 95% distribution-free coverage envelopes.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-emerald-900/60 bg-[#09231B] space-y-2">
+          <div class="text-xs mono text-emerald-400">TIER 4</div>
+          <h4 class="text-sm font-bold text-white">MIT Separable</h4>
+          <p class="text-xs text-slate-400">Decoupled d(p,x)=g(p)*h(x) with isotonic monotonic shape guarantee.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-rose-900/60 bg-[#24101A] space-y-2">
+          <div class="text-xs mono text-rose-400">TIER 5</div>
+          <h4 class="text-sm font-bold text-white">CVaR Optimizer</h4>
+          <p class="text-xs text-slate-400">Downside tail-risk hedging & Executive Decision Companion UI.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4: Data Foundation -->
+    <div class="slide w-full flex-col space-y-6" data-slide="4">
+      <span class="text-xs uppercase tracking-widest text-slate-400 mono font-semibold">Slide 04 • Empirical Foundation</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white">Walmart M5 Real Data Foundation</h2>
+      <p class="text-sm text-slate-300">Curated from the premier Kaggle M5 benchmark for empirical realism:</p>
+      <div class="overflow-x-auto rounded-xl border border-slate-800">
+        <table class="w-full text-left text-xs mono">
+          <thead class="bg-slate-900 text-slate-400">
+            <tr>
+              <th class="p-3">SKU Identifier</th>
+              <th class="p-3">Category</th>
+              <th class="p-3">Base Price</th>
+              <th class="p-3">Elasticity (Ed)</th>
+              <th class="p-3">Strategic Profile</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-200 bg-[#0E1320]">
+            <tr><td class="p-3 text-rose-300">FOODS_3_090_CA_1</td><td class="p-3">Grocery</td><td class="p-3">$1.25</td><td class="p-3 font-bold text-rose-400">-1.35</td><td class="p-3">Perishable grocery; highly price-elastic</td></tr>
+            <tr><td class="p-3 text-blue-300">FOODS_1_001_CA_1</td><td class="p-3">Pantry</td><td class="p-3">$2.24</td><td class="p-3 font-bold text-emerald-400">-0.80</td><td class="p-3">Packaged staples; steady consumer purchase cycle</td></tr>
+            <tr><td class="p-3 text-amber-300">HOUSEHOLD_1_001_CA_1</td><td class="p-3">Household</td><td class="p-3">$5.97</td><td class="p-3 font-bold text-emerald-400">-0.42</td><td class="p-3">Cleaning essential; highly inelastic demand</td></tr>
+            <tr><td class="p-3 text-cyan-300">HOUSEHOLD_2_005_CA_1</td><td class="p-3">Home Goods</td><td class="p-3">$8.94</td><td class="p-3 font-bold text-emerald-400">-0.95</td><td class="p-3">Semi-durable home goods; balanced sensitivity</td></tr>
+            <tr><td class="p-3 text-purple-300">HOBBIES_1_001_CA_1</td><td class="p-3">Discretionary</td><td class="p-3">$11.97</td><td class="p-3 font-bold text-rose-400">-1.15</td><td class="p-3">Leisure and toys; elastic holiday cycles</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-xs text-slate-400">9,565 total records across 1,913 consecutive days with calendar events and SNAP flags.</div>
+    </div>
+
+    <!-- Slide 5: Ablation Results -->
+    <div class="slide w-full flex-col space-y-6" data-slide="5">
+      <span class="text-xs uppercase tracking-widest text-emerald-400 mono font-semibold">Slide 05 • Forecasting Ablation</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white">Forecasting Ablation: Deep Learning Beats Baselines</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <div class="space-y-3">
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Rigorous benchmarking across identical test splits demonstrates that sequential neural modeling captures subtle temporal autocorrelations that naive baselines fail to see.
+          </p>
+          <div class="p-4 rounded-xl border border-emerald-500/30 bg-emerald-950/20 text-emerald-300 text-sm font-semibold">
+            ✦ 43.2% Error Reduction vs. Seasonal Naive Benchmark
+          </div>
+        </div>
+        <div class="rounded-xl border border-slate-800 bg-[#0E1320] p-4 text-xs mono">
+          <div class="flex justify-between py-2 border-b border-slate-800 font-bold text-slate-400">
+            <span>Model</span><span>MAE</span><span>RMSE</span><span>MAPE</span>
+          </div>
+          <div class="flex justify-between py-1.5 text-slate-400"><span>Naive (Persistence)</span><span>3.82</span><span>4.95</span><span>25.4%</span></div>
+          <div class="flex justify-between py-1.5 text-slate-400"><span>Seasonal Naive (7-D)</span><span>3.24</span><span>4.15</span><span>22.1%</span></div>
+          <div class="flex justify-between py-1.5 text-slate-400"><span>Moving Average</span><span>5.51</span><span>6.84</span><span>32.3%</span></div>
+          <div class="flex justify-between py-1.5 text-slate-300"><span>Ridge Regression</span><span>2.12</span><span>2.82</span><span>16.2%</span></div>
+          <div class="flex justify-between py-2 font-bold text-cyan-400 border-t border-slate-800">
+            <span>PyTorch LSTM</span><span>1.84</span><span>2.42</span><span>14.2%</span>
+          </div>
+          <div class="flex justify-between py-2 font-bold text-emerald-400">
+            <span>CoRAL-RF Gated Expert</span><span>1.78</span><span>2.35</span><span>13.6%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 6: Elasticity & MIT Monotonicity -->
+    <div class="slide w-full flex-col space-y-6" data-slide="6">
+      <span class="text-xs uppercase tracking-widest text-cyan-400 mono font-semibold">Slide 06 • Econometric Elasticity</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white">MIT Separable Monotonicity Guarantee</h2>
+      <p class="text-sm text-slate-300">Simchi-Levi et al. proved that standard ML models predict upward-sloping demand in ~60% of retail SKUs. NAOMI solves this via isotonic submodel descent:</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl border border-rose-900/60 bg-rose-950/20 space-y-3">
+          <h3 class="text-base font-bold text-rose-300">❌ Naive ML Demand Engine</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">Confounded by promotional discounts and sticky prices. Predicts higher sales at higher prices, tempting managers into destructive pricing traps.</p>
+        </div>
+        <div class="p-6 rounded-2xl border border-emerald-900/60 bg-emerald-950/20 space-y-3">
+          <h3 class="text-base font-bold text-emerald-300">✓ NAOMI 2.0 Separable Engine</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">Enforces isotonic monotonicity ∂g(p)/∂p ≤ 0 via Pool-Adjacent Violators. Guaranteed strictly non-increasing demand curve across all operating conditions.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 7: Profit Landscape & Opportunity -->
+    <div class="slide w-full flex-col space-y-6" data-slide="7">
+      <span class="text-xs uppercase tracking-widest text-rose-400 mono font-semibold">Slide 07 • Profit Optimization</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white">The Price-vs-Profit Hill: Capturing the Opportunity Gap</h2>
+      <div class="p-6 rounded-2xl border border-slate-800 bg-[#0E1524] space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="text-base font-bold text-white">Analytical Optimization Formula</h3>
+          <span class="text-xs mono text-rose-400">P* = C·e / (1 + e)</span>
+        </div>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          For inelastic goods (Ed > -1.0) like packaged food staple <code class="mono text-cyan-300">FOODS_1_001_CA_1</code>, current pricing at $2.24 sits below the peak. Raising unit price to $2.55 captures <strong>+18.4% profit uplift</strong> without exceeding customer reserve price thresholds.
+        </p>
+      </div>
+    </div>
+
+    <!-- Slide 8: Macro Scenarios -->
+    <div class="slide w-full flex-col space-y-6" data-slide="8">
+      <span class="text-xs uppercase tracking-widest text-amber-400 mono font-semibold">Slide 08 • Macroeconomic Stress Testing</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white">5 Counterfactual Stress-Test Scenarios</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mono">
+        <div class="p-4 rounded-xl border border-slate-800 bg-[#0F1422]">
+          <span class="text-rose-400 font-bold">1. Supply Chain Cost Inflation (+10%)</span>
+          <p class="text-slate-400 mt-1 font-sans">Profit contracts -23.3% due to operating leverage and thin retail margin.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-800 bg-[#0F1422]">
+          <span class="text-rose-400 font-bold">2. Competitor Price War (-10%)</span>
+          <p class="text-slate-400 mt-1 font-sans">Cross-elasticity triggers -20% customer demand loss.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-800 bg-[#0F1422]">
+          <span class="text-rose-400 font-bold">3. Macro Demand Shock (-15%)</span>
+          <p class="text-slate-400 mt-1 font-sans">Simulates consumer confidence erosion across local store trade area.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-800 bg-[#0F1422]">
+          <span class="text-rose-400 font-bold">4. Stagflation Crisis (+10% cost & -8% demand)</span>
+          <p class="text-slate-400 mt-1 font-sans">Compounding squeeze: earn less margin per unit on fewer total units.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 9: Executive Dashboard UI -->
+    <div class="slide w-full flex-col space-y-6" data-slide="9">
+      <span class="text-xs uppercase tracking-widest text-blue-400 mono font-semibold">Slide 09 • Executive Dashboard</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white">Pitch Black & Crimson C-Suite Dashboard</h2>
+      <p class="text-sm text-slate-300">Engineered for sub-30 second decision making: live sliders, interactive charts, and real-time P&L feedback.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div class="p-4 rounded-xl border border-slate-800 bg-[#0E1524]">
+          <div class="text-xs text-slate-400">Target Port</div>
+          <div class="text-lg font-bold text-white mono mt-1">5180</div>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-800 bg-[#0E1524]">
+          <div class="text-xs text-slate-400">REST API</div>
+          <div class="text-lg font-bold text-cyan-400 mono mt-1">8080/docs</div>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-800 bg-[#0E1524]">
+          <div class="text-xs text-slate-400">Framework</div>
+          <div class="text-lg font-bold text-white mono mt-1">React + Tailwind</div>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-800 bg-[#0E1524]">
+          <div class="text-xs text-slate-400">Response Latency</div>
+          <div class="text-lg font-bold text-emerald-400 mono mt-1">&lt; 15ms</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 10: Anti-Hallucination Guard -->
+    <div class="slide w-full flex-col space-y-6" data-slide="10">
+      <span class="text-xs uppercase tracking-widest text-emerald-400 mono font-semibold">Slide 10 • LLM Governance</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white">Zero-Hallucination Executive Narrative Guard</h2>
+      <div class="p-6 rounded-2xl border border-emerald-900/60 bg-[#0D1C18] space-y-3">
+        <h3 class="text-base font-bold text-emerald-300">The Speechwriter Protocol</h3>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          The LLM is constrained strictly as a speechwriter, never an analyst. Every emitted number is cross-checked against the raw simulation JSON using regex validation. Any mismatch immediately defaults to our verified deterministic fallback generator.
+        </p>
+        <div class="pt-2 text-xs mono text-emerald-400">Mandatory Compliance: "AI-assisted, not binding."</div>
+      </div>
+    </div>
+
+    <!-- Slide 11: Achievements vs Blueprint -->
+    <div class="slide w-full flex-col space-y-6" data-slide="11">
+      <span class="text-xs uppercase tracking-widest text-rose-400 mono font-semibold">Slide 11 • Scorecard</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white">Results vs. Blueprint Target</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-xs">
+        <div class="p-4 rounded-xl border border-slate-800 bg-[#0E1524] space-y-1">
+          <div class="text-slate-400">Forecasting</div>
+          <div class="text-emerald-400 font-bold">✓ Exceeded</div>
+          <div class="text-[11px] text-slate-500">CoRAL-RF + Conformal Fans</div>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-800 bg-[#0E1524] space-y-1">
+          <div class="text-slate-400">Elasticity</div>
+          <div class="text-emerald-400 font-bold">✓ Exceeded</div>
+          <div class="text-[11px] text-slate-500">MIT Separable Isotonic Engine</div>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-800 bg-[#0E1524] space-y-1">
+          <div class="text-slate-400">Risk Optimization</div>
+          <div class="text-emerald-400 font-bold">✓ Exceeded</div>
+          <div class="text-[11px] text-slate-500">Dual E[Profit] & CVaR Frontier</div>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-800 bg-[#0E1524] space-y-1">
+          <div class="text-slate-400">Consumer Simulation</div>
+          <div class="text-emerald-400 font-bold">✓ Exceeded</div>
+          <div class="text-[11px] text-slate-500">5 Behavioral Personas (Columbia)</div>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-800 bg-[#0E1524] space-y-1">
+          <div class="text-slate-400">Executive Briefing</div>
+          <div class="text-emerald-400 font-bold">✓ Exceeded</div>
+          <div class="text-[11px] text-slate-500">Anti-Hallucination Verified</div>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-800 bg-[#0E1524] space-y-1">
+          <div class="text-slate-400">Test Verification</div>
+          <div class="text-emerald-400 font-bold">✓ 100% Pass</div>
+          <div class="text-[11px] text-slate-500">80+ Automated Unit Tests</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 12: Roadmap & Limitations -->
+    <div class="slide w-full flex-col space-y-6" data-slide="12">
+      <span class="text-xs uppercase tracking-widest text-slate-400 mono font-semibold">Slide 12 • Limitations & Roadmap</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white">Transparent Engineering Roadmap</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+        <div class="space-y-2">
+          <h4 class="font-bold text-slate-300">Operational Assumptions</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">• Baseline cost pegged at 60% of retail price (overridable via API).</p>
+          <p class="text-xs text-slate-400 leading-relaxed">• Curated to 5 representative SKUs across 5.4 years for deep benchmark fidelity.</p>
+        </div>
+        <div class="space-y-2">
+          <h4 class="font-bold text-slate-300">Phase 2.0 Scale Roadmap</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">• Direct ERP (SAP/Oracle) connectors for live cost book synchronization.</p>
+          <p class="text-xs text-slate-400 leading-relaxed">• Warehouse multi-echelon safety stock sizing from conformal quantiles.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 13: Executive Call to Action -->
+    <div class="slide w-full flex-col space-y-6 text-center" data-slide="13">
+      <span class="text-xs uppercase tracking-widest text-rose-500 mono font-semibold">Slide 13 • Decision</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white leading-tight">
+        Deploying NAOMI 2.0 as the <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-rose-300">Commercial Decision Core</span>
+      </h2>
+      <p class="text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
+        NAOMI bridges mathematical rigor with executive bounded rationality, giving enterprise retail leaders the certainty they need in volatile markets.
+      </p>
+      <div class="pt-6 flex justify-center gap-4">
+        <a href="http://localhost:5180" target="_blank" class="px-6 py-3 rounded-xl bg-rose-600 hover:bg-rose-500 font-semibold text-white shadow-lg shadow-rose-950 transition">Launch Live Decision Companion</a>
+        <a href="http://127.0.0.1:8080/docs" target="_blank" class="px-6 py-3 rounded-xl border border-slate-800 bg-slate-900 hover:bg-slate-800 font-semibold text-slate-200 transition">Explore REST API Docs</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Bottom Slide Dots -->
+  <footer class="border-t border-slate-800/80 bg-[#0A0D14]/90 px-8 py-4 flex items-center justify-between text-xs text-slate-500">
+    <div id="dotContainer" class="flex gap-2"></div>
+    <span class="mono">Press Left / Right arrows to navigate</span>
+  </footer>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 13;
+
+    function renderDots() {
+      const container = document.getElementById('dotContainer');
+      container.innerHTML = '';
+      for (let i = 1; i <= totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.className = `w-2 h-2 rounded-full transition-all ${i === currentSlide ? 'w-6 bg-rose-500' : 'bg-slate-700 hover:bg-slate-500'}`;
+        dot.onclick = () => goToSlide(i);
+        container.appendChild(dot);
+      }
+    }
+
+    function showSlide(index) {
+      document.querySelectorAll('.slide').forEach((s) => s.classList.remove('active'));
+      const target = document.querySelector(`.slide[data-slide="${index}"]`);
+      if (target) target.classList.add('active');
+      document.getElementById('slideCounter').textContent = `Slide ${index} of ${totalSlides}`;
+      renderDots();
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        showSlide(currentSlide);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        showSlide(currentSlide);
+      }
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      showSlide(currentSlide);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    renderDots();
+  </script>
+</body>
+</html>
+

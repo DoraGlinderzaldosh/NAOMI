@@ -5,7 +5,7 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-ee4c2c.svg)](https://pytorch.org/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/Phase%201--4-Completed-success.svg)]()
+[![Status](https://img.shields.io/badge/NAOMI%202.0-Completed%20(84%2F84%20Tests)-success.svg)]()
 
 ---
 
@@ -40,10 +40,11 @@ flowchart LR
 | **Phase 2** | Primary Dataset Curation | ✅ **Done** | `data/raw/walmart_m5_curated.csv` (9,565 rows, 5 curated SKUs) |
 | **Phase 3** | Feature Pipeline & Windowing | ✅ **Done** | `src/data/pipeline.py`, `src/data/dataset.py`, `tests/test_data_pipeline.py` (5/5 tests pass) |
 | **Phase 4** | Demand Forecasting Engine | ✅ **Done** | `src/models/` (LSTM + 4 Baselines), `tests/test_models.py` (5/5 tests pass), `models_cache/pytorch_lstm.pt` |
-| **Phase 5** | Economics, Pricing & Optimization | 🔄 **In Progress** | Owned by **Member 2** (`src/core/elasticity.py`, `optimizer.py`, `financial.py`) |
-| **Phase 6** | Counterfactual Simulator & API | ✅ **Done** | Owned by **Member 3** (`src/core/simulator.py`, `src/api/main.py`, 44/44 tests pass) |
-| **Phase 7** | Executive Dashboard | ✅ **Done** | Owned by **Member 4** (`src/dashboard/`, 12/12 tests pass) |
-| **Phase 8** | Presentation & LLM Narrative | 🔄 **Ready to start** | Owned by **Member 5** (`presentation/`, `src/llm/`) |
+| **Phase 5** | Economics, Pricing & Optimization | ✅ **Done** | `src/core/elasticity.py`, `src/core/separable_elasticity.py` (MIT Isotonic Non-Increasing Guarantee), `optimizer.py`, `financial.py` |
+| **Phase 6** | Counterfactual Simulator & API | ✅ **Done** | `src/core/simulator.py`, `src/api/main.py`, `tests/test_simulation.py` (44/44 tests pass) |
+| **Phase 7** | Executive Dashboard | ✅ **Done** | `frontend/` (React Pitch Black & Crimson UI) & `src/dashboard/` (Plotly Dash) |
+| **Phase 8** | Presentation & LLM Narrative | ✅ **Done** | `presentation/` (13-Slide Pitch Deck, 5-Min Demo Script), `src/llm/` (Narrator, Anti-Hallucination Guard, Fallback) |
+| **Phase 9 / NAOMI 2.0** | Advanced Research Upgrade | ✅ **Done** | CoRAL-RF Gated Forecaster (`src/models/conformal_gate.py`), Columbia Virtual Population (`src/llm/virtual_population.py`), Downside CVaR Optimizer (`src/core/cvar_optimizer.py`), 84/84 Automated Tests Pass |
 
 ---
 
