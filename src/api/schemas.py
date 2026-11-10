@@ -1,5 +1,6 @@
 """
 Pydantic request/response schemas for the NAOMI REST API.
+Includes core endpoints and NAOMI 2.0 enhancements (Conformal, CVaR, Virtual Population, Narrative).
 """
 
 from typing import Any, Dict, List, Optional
@@ -183,3 +184,108 @@ class SimulateResponse(BaseModel):
     revenue_delta_pct: float
     profit_delta_pct: float
     risk_assessment: str
+
+
+# ------------------------------------------------------------------ #
+# Phase 8 / NAOMI 2.0 Schemas
+# ------------------------------------------------------------------ #
+
+class NarrativeRequest(BaseModel):
+    sku_id: str = Field(..., description="Target SKU identifier")
+    horizon: int = Field(default=14, ge=1, le=30)
+    current_price: Optional[float] = Field(default=None, gt=0)
+    optimal_price: Optional[float] = Field(default=None, gt=0)
+    base_demand: Optional[float] = Field(default=None, gt=0)
+    risk_scenario: Optional[str] = Field(default="supply_chain_inflation")
+
+
+class NarrativeResponse(BaseModel):
+    sku_id: str
+    narrative: str
+    source: str
+    disclaimer: str
+    validated: bool
+
+
+class VirtualPopulationRequest(BaseModel):
+    sku_id: str = Field(..., description="Target SKU identifier")
+    candidate_price: Optional[float] = Field(default=None, gt=0)
+    total_shopper_traffic: int = Field(default=500, ge=50, le=5000)
+
+
+class PersonaDetail(BaseModel):
+    persona_id: str
+    name: str
+    weight_pct: float
+    baseline_prob: float
+    candidate_prob: float
+    delta_prob_pct: float
+    reserve_price: float
+    elasticity: float
+
+
+class VirtualPopulationResponse(BaseModel):
+    sku_id: str
+    base_price: float
+    candidate_price: float
+    total_shopper_traffic: int
+    aggregate_conversion_rate: float
+    baseline_conversion_rate: float
+    expected_demand_units: float
+    demand_p05: float
+    demand_p95: float
+    demand_std_dev: float
+    demand_delta_pct: float
+    personas: List[PersonaDetail]
+
+
+class CVaROptimizeRequest(BaseModel):
+    sku_id: str = Field(..., description="Target SKU identifier")
+    base_demand: Optional[float] = Field(default=None, gt=0)
+    risk_aversion_lambda: float = Field(default=0.30, ge=0.0, le=1.0)
+    tail_beta: float = Field(default=0.10, ge=0.01, le=0.50)
+    override_unit_cost: Optional[float] = Field(default=None, gt=0)
+    fixed_costs: float = Field(default=500.0, ge=0.0)
+
+
+class FrontierPointSchema(BaseModel):
+    lambda_val: float = Field(..., alias="lambda")
+    optimal_price: float
+    expected_profit: float
+    cvar_downside_profit: float
+    tail_risk_exposure: float
+    forecasted_demand: float
+
+
+class CVaROptimizeResponse(BaseModel):
+    sku_id: str
+    base_price: float
+    optimal_price: float
+    risk_aversion_lambda: float
+    expected_profit: float
+    cvar_downside_profit: float
+    tail_risk_gap: float
+    forecasted_demand: float
+    base_expected_profit: float
+    profit_uplift_pct: float
+    is_constrained: bool
+    efficient_frontier: List[Dict[str, Any]]
+
+
+class ConformalForecastRequest(BaseModel):
+    sku_id: str = Field(..., description="Target SKU identifier")
+    horizon: int = Field(default=14, ge=1, le=30)
+
+
+class ConformalForecastResponse(BaseModel):
+    sku_id: str
+    horizon: int
+    dates: List[str]
+    point_forecast: List[float]
+    lower_90: List[float]
+    upper_90: List[float]
+    lower_95: List[float]
+    upper_95: List[float]
+    q_hat_90: float
+    q_hat_95: float
+    safety_stock_buffer_95: float
