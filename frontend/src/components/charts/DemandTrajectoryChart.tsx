@@ -64,17 +64,17 @@ export const DemandTrajectoryChart: React.FC<DemandTrajectoryChartProps> = ({
   });
 
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className="w-full h-full flex flex-col justify-between">
       <div className="flex items-center justify-between mb-2">
         <div>
-          <h3 className="text-sm font-semibold tracking-tight text-white flex items-center gap-2">
+          <h3 className="text-xs font-mono font-semibold tracking-wide text-zinc-100 uppercase flex items-center gap-2">
             <span>Demand Forecast & Conformal Envelopes</span>
-            <span className="text-[10px] font-normal px-2 py-0.5 rounded-full bg-blue-950/80 border border-blue-800/70 text-blue-300">
-              CoRAL-RF 90% / 95%
+            <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#121215] border border-[#27272A] text-zinc-400">
+              CoRAL-RF 90/95%
             </span>
           </h3>
-          <p className="text-[11px] text-zinc-400">
-            {sku.item_name} • Split Conformal Prediction safety stock bounds
+          <p className="text-[11px] font-mono text-zinc-500">
+            {sku.item_name} • Finite-Sample Distribution-Free Coverage
           </p>
         </div>
       </div>
@@ -82,18 +82,18 @@ export const DemandTrajectoryChart: React.FC<DemandTrajectoryChartProps> = ({
       <div className="w-full h-[260px] min-h-[260px]">
         <ResponsiveContainer width="100%" height="100%" minHeight={260}>
           <ComposedChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="2 2" stroke="#1E293B" vertical={false} opacity={0.6} />
+            <CartesianGrid strokeDasharray="1 1" stroke="#18181B" vertical={false} />
 
             <XAxis
               dataKey="date"
-              stroke="#475569"
-              tick={{ fill: "#94A3B8", fontSize: 10, fontFamily: "JetBrains Mono" }}
+              stroke="#3F3F46"
+              tick={{ fill: "#71717A", fontSize: 10, fontFamily: "JetBrains Mono" }}
               tickLine={false}
-              axisLine={{ stroke: "#1E293B" }}
+              axisLine={{ stroke: "#1F1F23" }}
             />
             <YAxis
-              stroke="#475569"
-              tick={{ fill: "#94A3B8", fontSize: 10, fontFamily: "JetBrains Mono" }}
+              stroke="#3F3F46"
+              tick={{ fill: "#71717A", fontSize: 10, fontFamily: "JetBrains Mono" }}
               tickLine={false}
               axisLine={false}
             />
@@ -102,15 +102,15 @@ export const DemandTrajectoryChart: React.FC<DemandTrajectoryChartProps> = ({
               content={({ active, payload, label }) => {
                 if (!active || !payload || !payload.length) return null;
                 return (
-                  <div className="rounded-lg border border-slate-800 bg-[#111827] p-2.5 shadow-xl text-xs">
-                    <p className="font-mono text-slate-400 mb-1">{label}</p>
+                  <div className="rounded border border-[#27272A] bg-[#09090B] p-2.5 shadow-2xl text-xs font-mono">
+                    <p className="text-zinc-500 mb-1 border-b border-[#18181B] pb-1">Date: {label}</p>
                     {payload.map((entry, idx) => (
-                      <div key={idx} className="flex items-center justify-between gap-3 py-0.5">
-                        <span className="text-slate-300" style={{ color: entry.color }}>
+                      <div key={idx} className="flex items-center justify-between gap-4 py-0.5">
+                        <span className="text-zinc-400">
                           {entry.name}:
                         </span>
-                        <span className="font-mono font-bold text-white">
-                          {Number(entry.value).toFixed(1)}
+                        <span className="font-bold text-zinc-100 tabular-nums">
+                          {Number(entry.value).toFixed(1)} u
                         </span>
                       </div>
                     ))}
@@ -122,35 +122,35 @@ export const DemandTrajectoryChart: React.FC<DemandTrajectoryChartProps> = ({
             <Legend
               verticalAlign="top"
               align="right"
-              iconType="circle"
-              wrapperStyle={{ fontSize: "11px", paddingBottom: "6px" }}
+              iconType="plainline"
+              wrapperStyle={{ fontSize: "10px", fontFamily: "JetBrains Mono", paddingBottom: "6px" }}
             />
 
-            {/* 95% Outer Conformal Risk Envelope */}
+            {/* 95% Outer Conformal Envelope */}
             <Area
               type="monotone"
               dataKey="upper_95"
               stroke="transparent"
-              fill="#0284C7"
-              fillOpacity={0.08}
-              name="95% Conformal Buffer"
+              fill="#27272A"
+              fillOpacity={0.35}
+              name="95% Conformal"
             />
 
-            {/* 90% Inner Conformal Confidence Band */}
+            {/* 90% Inner Conformal Band */}
             <Area
               type="monotone"
               dataKey="upper_ci"
               stroke="transparent"
-              fill="#3B82F6"
-              fillOpacity={0.16}
-              name="90% Conformal Band"
+              fill="#3F3F46"
+              fillOpacity={0.45}
+              name="90% Conformal"
             />
             <Area
               type="monotone"
               dataKey="lower_ci"
               stroke="transparent"
-              fill="#0B0F19"
-              name="CI Lower Bound"
+              fill="#070709"
+              name="CI Lower"
               legendType="none"
             />
 
@@ -158,26 +158,29 @@ export const DemandTrajectoryChart: React.FC<DemandTrajectoryChartProps> = ({
             <Line
               type="monotone"
               dataKey="actual"
-              stroke="#94A3B8"
+              stroke="#52525B"
               strokeWidth={1.5}
-              dot={{ r: 2, fill: "#94A3B8" }}
-              activeDot={{ r: 4, stroke: "#E2E8F0" }}
-              name="Historical Actuals"
+              dot={false}
+              name="Actuals"
             />
 
             {/* Point Forecast Trajectory */}
             <Line
               type="monotone"
               dataKey="predicted"
-              stroke="#38BDF8"
-              strokeWidth={2.5}
-              strokeDasharray="4 4"
-              dot={{ r: 3, fill: "#38BDF8" }}
-              activeDot={{ r: 5, stroke: "#FFFFFF", strokeWidth: 2 }}
-              name="CoRAL-RF Forecast"
+              stroke="#F4F4F5"
+              strokeWidth={2}
+              strokeDasharray="3 3"
+              dot={{ r: 2.5, fill: "#FFFFFF" }}
+              name="Forecast"
             />
           </ComposedChart>
         </ResponsiveContainer>
+      </div>
+
+      <div className="flex items-center justify-between text-[10px] font-mono text-zinc-500 border-t border-[#18181B] pt-1">
+        <span>Empirical Calibration: M5 Cal Set</span>
+        <span>Zizi et al. (2026) CoRAL-RF</span>
       </div>
     </div>
   );

@@ -64,14 +64,14 @@ export const ScenarioControls: React.FC<ScenarioControlsProps> = ({
       <div>
         <div className="flex items-center justify-between mb-2.5">
           <div>
-            <h3 className="text-sm font-semibold tracking-tight text-white">
-              Counterfactual Simulation
+            <h3 className="text-xs font-mono font-semibold tracking-wide text-zinc-100 uppercase">
+              Counterfactual Levers
             </h3>
-            <p className="text-[11px] text-slate-400">Exogenous shock & pricing levers</p>
+            <p className="text-[11px] font-mono text-zinc-500">Exogenous Stress & Pricing Levers</p>
           </div>
           <button
             onClick={handleReset}
-            className="text-[11px] text-slate-400 hover:text-white px-2.5 py-0.5 rounded bg-slate-800/80 border border-slate-700/60 hover:border-slate-500 transition-colors font-mono"
+            className="text-[11px] font-mono text-zinc-400 hover:text-white px-2 py-0.5 rounded bg-[#121215] border border-[#27272A] hover:border-zinc-500 transition-colors cursor-pointer"
           >
             Reset
           </button>
@@ -83,10 +83,10 @@ export const ScenarioControls: React.FC<ScenarioControlsProps> = ({
             <button
               key={preset.id}
               onClick={preset.apply}
-              className={`py-1 px-1.5 text-center rounded-lg text-xs font-medium transition-all ${
+              className={`py-1 px-1.5 text-center rounded text-xs font-mono transition-colors ${
                 preset.isActive
-                  ? "bg-blue-950 border border-blue-600/80 text-white shadow-sm font-semibold"
-                  : "bg-[#111827] border border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700"
+                  ? "bg-zinc-200 text-black font-bold border border-zinc-300"
+                  : "bg-[#101014] border border-[#27272A] text-zinc-400 hover:text-zinc-200 hover:border-zinc-600"
               }`}
             >
               {preset.label}
@@ -94,7 +94,7 @@ export const ScenarioControls: React.FC<ScenarioControlsProps> = ({
           ))}
         </div>
 
-        {/* 4 Compact Range Sliders */}
+        {/* 4 Precision Sliders */}
         <div className="space-y-1">
           <CustomSlider
             label="Candidate Price Adjustment"

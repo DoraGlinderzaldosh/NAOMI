@@ -22,48 +22,46 @@ export const Header: React.FC<HeaderProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-[#0B0F19]/95 border-b border-slate-800/80 px-6 py-2.5 shadow-sm">
-      <div className="max-w-[1500px] mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+    <header className="sticky top-0 z-50 bg-[#000000] border-b border-[#1F1F23] px-6 py-2.5">
+      <div className="max-w-[1540px] mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
         
         {/* Brand & System Status */}
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-700 border border-blue-500/50 flex items-center justify-center font-black text-white text-sm shadow-sm">
-            N
+          <div className="h-7 px-2 rounded bg-white text-black font-mono font-bold text-xs flex items-center justify-center tracking-wider">
+            NAOMI
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="font-bold text-base tracking-tight text-white leading-tight font-display">NAOMI</h1>
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800/90 text-slate-300 border border-slate-700/50">
-                Decision Companion
+              <span className="font-semibold text-xs tracking-wide text-zinc-100 uppercase">
+                Enterprise Decision Platform
+              </span>
+              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#121215] text-zinc-400 border border-[#27272A]">
+                v2.0 • M5 Core
               </span>
             </div>
-            <p className="text-[11px] text-slate-400">Neural Analytics & Market Intelligence</p>
+            <p className="text-[10px] font-mono text-zinc-500">
+              Econometric Pricing Engine • 1,913-Day Walmart Time-Series
+            </p>
           </div>
         </div>
 
-        {/* Center: SKU Navigation Pills */}
-        <div className="flex items-center gap-1.5 p-1 bg-[#111827] border border-slate-800/90 rounded-xl overflow-x-auto max-w-full no-scrollbar">
+        {/* Center: SKU Ticker Selector */}
+        <div className="flex items-center gap-1 p-0.5 bg-[#09090B] border border-[#1F1F23] rounded-md overflow-x-auto max-w-full no-scrollbar">
           {CURATED_SKUS.map((sku) => {
             const isSelected = sku.item_id === selectedSku.item_id;
             return (
               <button
                 key={sku.item_id}
                 onClick={() => onSelectSku(sku)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
+                className={`px-2.5 py-1 rounded text-xs font-mono transition-colors whitespace-nowrap flex items-center gap-2 ${
                   isSelected
-                    ? "bg-gradient-to-r from-blue-950 to-blue-900 border border-blue-600/70 text-white shadow-sm"
-                    : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 border border-transparent"
+                    ? "bg-[#1C1C21] text-white border border-zinc-600 font-semibold shadow-sm"
+                    : "text-zinc-400 hover:text-zinc-200 hover:bg-[#121215] border border-transparent"
                 }`}
               >
-                <span className={`text-[9px] font-mono uppercase px-1 rounded ${
-                  isSelected ? "bg-blue-800 text-blue-200" : "bg-slate-800 text-slate-400"
-                }`}>
-                  {sku.category}
-                </span>
-                <span>{sku.item_name}</span>
-                <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded ${
-                  isSelected ? "bg-blue-900/80 text-blue-200 font-bold" : "bg-slate-800 text-slate-400"
-                }`}>
+                <span className="text-[10px] text-zinc-500 uppercase">{sku.category.slice(0, 4)}</span>
+                <span className="font-sans font-medium">{sku.item_name.replace(" Item ", " ")}</span>
+                <span className={`text-[10px] tabular-nums ${isSelected ? "text-emerald-400" : "text-zinc-400"}`}>
                   ${sku.base_price.toFixed(2)}
                 </span>
               </button>
@@ -72,19 +70,19 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Right: Horizon Selector */}
-        <div className="flex items-center gap-1.5">
-          <div className="flex items-center gap-1 p-1 bg-[#111827] border border-slate-800/90 rounded-lg">
-            <span className="text-[11px] text-slate-400 px-2 font-medium">Horizon:</span>
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 p-0.5 bg-[#09090B] border border-[#1F1F23] rounded-md font-mono text-xs">
+            <span className="text-[10px] text-zinc-500 px-2 uppercase tracking-wider">Horizon:</span>
             {horizons.map((h) => {
               const isActive = horizon === h.value;
               return (
                 <button
                   key={h.value}
                   onClick={() => onSelectHorizon(h.value)}
-                  className={`px-2.5 py-1 rounded text-xs font-medium transition-all ${
+                  className={`px-2 py-0.5 rounded text-xs transition-colors ${
                     isActive
-                      ? "bg-blue-600 border border-blue-500 text-white font-semibold shadow-sm"
-                      : "text-slate-400 hover:text-slate-200"
+                      ? "bg-zinc-200 text-black font-bold"
+                      : "text-zinc-400 hover:text-zinc-200"
                   }`}
                 >
                   {h.label}

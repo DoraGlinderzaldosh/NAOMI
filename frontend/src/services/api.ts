@@ -8,6 +8,7 @@ import {
   VirtualPopulationResponse,
   CVaROptimizeResponse,
   NarrativeResponse,
+  FrontierPoint,
 } from "../types";
 
 export const CURATED_SKUS: SKUInfo[] = [
@@ -420,6 +421,105 @@ export async function fetchVirtualPopulation(
         candidate_prob: 0.35,
         delta_prob_pct: -10.3,
         reserve_price: sku.base_price * 1.15,
+        elasticity: -1.30,
+      },
+    ],
+  };
+}
+
+
+export function computeExecutiveRiskFrontier(sku: SKUInfo): FrontierPoint[] {
+  const basePrice = sku.base_price;
+  const elasticity = sku.historical_elasticity;
+  const baseDemand = BASE_DEMAND_MAP[sku.item_id] || 50.0;
+  const unitCost = basePrice * DEFAULT_COST_RATIO;
+  const dailyFixed = Math.round((DEFAULT_FIXED_COST / 30.0) * 100) / 100;
+
+  const lambdas = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0];
+  return lambdas.map((lam) => {
+    const priceShift = 1.0 + 0.12 * (1.0 - lam * 0.7);
+    const optPrice = Math.round(basePrice * priceShift * 100) / 100;
+    const demand = Math.round(baseDemand * Math.pow(optPrice / basePrice, elasticity) * 10) / 10;
+    const gross = (optPrice - unitCost) * demand - dailyFixed;
+    const tailGap = Math.round(Math.max(5.0, gross * (0.28 - lam * 0.16)) * 100) / 100;
+    const cvarProfit = Math.round((gross - tailGap) * 100) / 100;
+
+    return {
+      lambda: lam,
+      optimal_price: optPrice,
+      expected_profit: Math.round(gross * 100) / 100,
+      cvar_downside_profit: cvarProfit,
+      tail_risk_exposure: tailGap,
+      forecasted_demand: demand,
+    };
+  });
+}
+
+export function getVirtualPopulationSync(sku: SKUInfo, candidatePrice?: number): VirtualPopulationResponse {
+  const cand = candidatePrice || sku.base_price;
+  const pRatio = cand / sku.base_price;
+
+  return {
+    sku_id: sku.item_id,
+    base_price: sku.base_price,
+    candidate_price: cand,
+    total_shopper_traffic: 500,
+    aggregate_conversion_rate: 0.485,
+    baseline_conversion_rate: 0.512,
+    expected_demand_units: 242.5,
+    demand_p05: 220.0,
+    demand_p95: 265.0,
+    demand_std_dev: 11.2,
+    demand_delta_pct: -5.3,
+    personas: [
+      {
+        persona_id: "budget_hunter",
+        name: "Budget Bargain Hunter",
+        weight_pct: 28.0,
+        baseline_prob: 0.52,
+        candidate_prob: Math.max(0.05, Math.min(0.95, Math.round((0.52 * Math.pow(pRatio, -2.45)) * 100) / 100)),
+        delta_prob_pct: Math.round((Math.pow(pRatio, -2.45) - 1.0) * 100),
+        reserve_price: Math.round(sku.base_price * 0.92 * 100) / 100,
+        elasticity: -2.45,
+      },
+      {
+        persona_id: "convenience_seeker",
+        name: "Convenience Seeker",
+        weight_pct: 22.0,
+        baseline_prob: 0.68,
+        candidate_prob: Math.max(0.05, Math.min(0.95, Math.round((0.68 * Math.pow(pRatio, -0.45)) * 100) / 100)),
+        delta_prob_pct: Math.round((Math.pow(pRatio, -0.45) - 1.0) * 100),
+        reserve_price: Math.round(sku.base_price * 1.35 * 100) / 100,
+        elasticity: -0.45,
+      },
+      {
+        persona_id: "brand_loyalist",
+        name: "Brand & Quality Loyalist",
+        weight_pct: 20.0,
+        baseline_prob: 0.61,
+        candidate_prob: Math.max(0.05, Math.min(0.95, Math.round((0.61 * Math.pow(pRatio, -0.75)) * 100) / 100)),
+        delta_prob_pct: Math.round((Math.pow(pRatio, -0.75) - 1.0) * 100),
+        reserve_price: Math.round(sku.base_price * 1.28 * 100) / 100,
+        elasticity: -0.75,
+      },
+      {
+        persona_id: "bulk_buyer",
+        name: "Occasional Bulk Buyer",
+        weight_pct: 15.0,
+        baseline_prob: 0.45,
+        candidate_prob: Math.max(0.05, Math.min(0.95, Math.round((0.45 * Math.pow(pRatio, -1.85)) * 100) / 100)),
+        delta_prob_pct: Math.round((Math.pow(pRatio, -1.85) - 1.0) * 100),
+        reserve_price: Math.round(sku.base_price * 1.05 * 100) / 100,
+        elasticity: -1.85,
+      },
+      {
+        persona_id: "impulse_shopper",
+        name: "Event & Impulse Shopper",
+        weight_pct: 15.0,
+        baseline_prob: 0.39,
+        candidate_prob: Math.max(0.05, Math.min(0.95, Math.round((0.39 * Math.pow(pRatio, -1.30)) * 100) / 100)),
+        delta_prob_pct: Math.round((Math.pow(pRatio, -1.30) - 1.0) * 100),
+        reserve_price: Math.round(sku.base_price * 1.15 * 100) / 100,
         elasticity: -1.30,
       },
     ],

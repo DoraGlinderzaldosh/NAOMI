@@ -16,10 +16,10 @@ export const SpotlightCard: React.FC<CardProps> = ({
   return (
     <div
       className={cn(
-        "rounded-xl border bg-gradient-to-b from-[#131B2E] to-[#0E1524] p-4 transition-all shadow-sm",
+        "rounded-lg border bg-[#070709] p-4 transition-colors",
         highlight
-          ? "border-blue-700/60 shadow-blue-950/20"
-          : "border-slate-800/80 hover:border-slate-700/80",
+          ? "border-zinc-500"
+          : "border-[#1F1F23] hover:border-[#2E2E33]",
         className
       )}
       {...props}

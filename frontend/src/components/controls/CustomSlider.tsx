@@ -26,14 +26,14 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
 
   return (
     <div className="flex flex-col gap-1 py-1">
-      <div className="flex items-center justify-between text-xs">
-        <span className="text-slate-300 font-medium">{label}</span>
-        <span className="font-mono text-[11px] font-semibold text-blue-300 bg-blue-950/80 border border-blue-800/50 px-1.5 py-0.2 rounded">
+      <div className="flex items-center justify-between text-xs font-mono">
+        <span className="text-zinc-300 font-sans text-xs">{label}</span>
+        <span className="text-[11px] font-mono tabular-nums text-zinc-100 bg-[#121215] border border-[#27272A] px-1.5 py-0.2 rounded">
           {sign}{value}{unit}
         </span>
       </div>
 
-      <div className="relative flex items-center py-0.5">
+      <div className="relative flex items-center py-1">
         <input
           type="range"
           min={min}
@@ -43,7 +43,7 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
           onChange={(e) => onChange(parseFloat(e.target.value))}
           className="w-full"
           style={{
-            background: `linear-gradient(to right, #2563EB 0%, #2563EB ${percentage}%, #1E293B ${percentage}%, #1E293B 100%)`,
+            background: `linear-gradient(to right, #71717A 0%, #71717A ${percentage}%, #18181B ${percentage}%, #18181B 100%)`,
           }}
         />
       </div>
